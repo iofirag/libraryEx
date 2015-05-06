@@ -1,0 +1,20 @@
+/getAllBestSellersBooks
+	(GET) - get all the books at the DB
+	in array of books.
+
+/getBooksByMonth
+	(GET) - get books by a month parameter.
+	you will get array of books.
+	the parameters are not case sensitive.
+	you can send April/APriL and it's the same.
+	ex: '/getBooksByMonth?month=april'
+
+/getBookById/:id
+	(GET) - get books by id
+	the id start from 1000 to 1008.
+	ex: '/getBookById/1000'
+
+/getBookByName
+	(GET) - if you know a spesific book name
+	you can get it by it's name.
+	ex: '/getBookByName?name=book_a'
