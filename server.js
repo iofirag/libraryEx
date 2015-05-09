@@ -28,7 +28,7 @@ app.get('/getBooksByMonth', function(req,res){
 			res.status(200).send({'error':'no result'});
 		}
 	}else{
-		res.status(200).send({'error':'make sure send "month" param'});
+		res.status(200).send({'error':'make sure you send "month" as param'});
 	}
 });
 app.param('id', function(req,res,next,value){
@@ -43,7 +43,7 @@ app.get('/getBookById/:id', function(req,res){
 	if (book!= null){
 		res.json(book);
 	}else{
-		res.status(200).send({'error':'no result, make sure send number as param'});
+		res.status(200).send({'error':'no result, make sure you send number as ID'});
 	}
 });
 app.get('/getBookByName', function(req,res){
@@ -59,7 +59,7 @@ app.get('/getBookByName', function(req,res){
 			res.status(200).send({'error':'no result'});
 		}
 	}else{
-		res.status(200).send({'error':'make sure send "month" param'});
+		res.status(200).send({'error':'make sure you send "month" as param'});
 	}
 });
 app.get('/', function(req,res){
