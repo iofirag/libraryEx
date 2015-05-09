@@ -20,11 +20,15 @@ app.get('/getBooksByMonth', function(req,res){
 	var urlPart= url.parse(req.url, true);
 	var query = urlPart.query;
 
-	var books = library.getBooksByMonth(query.month.toLowerCase());
-	if (books!= null){
-		res.json(books);
+	if (query.month != null){
+		var books = library.getBooksByMonth(query.month.toLowerCase());
+		if (books!= null){
+			res.json(books);
+		}else{
+			res.status(200).send({'error':'no result'});
+		}
 	}else{
-		res.status(200).send({'error':'no result'});
+		res.status(200).send({'error':'make sure send "month" param'});
 	}
 });
 app.param('id', function(req,res,next,value){
@@ -39,7 +43,7 @@ app.get('/getBookById/:id', function(req,res){
 	if (book!= null){
 		res.json(book);
 	}else{
-		res.status(200).send({'error':'no result'});
+		res.status(200).send({'error':'no result, make sure send number as param'});
 	}
 });
 app.get('/getBookByName', function(req,res){
@@ -47,11 +51,15 @@ app.get('/getBookByName', function(req,res){
 	var urlPart= url.parse(req.url, true);
 	var query = urlPart.query;
 
-	var book = library.getBookByName(query.name.toLowerCase());
-	if (book!= null){
-		res.json(book);
+	if (query.name != null){
+		var book = library.getBookByName(query.name.toLowerCase());
+		if (book!= null){
+			res.json(book);
+		}else{
+			res.status(200).send({'error':'no result'});
+		}
 	}else{
-		res.status(200).send({'error':'no result'});
+		res.status(200).send({'error':'make sure send "month" param'});
 	}
 });
 app.get('/', function(req,res){
