@@ -63,7 +63,7 @@ app.get('/getBookByName', function(req,res){
 		}else{
 			res.status(200).send({'error':'no result'});
 		}
-	}else{
+	}else {
 		res.status(200).send({'error':'make sure you send "month" as param'});
 	}
 });

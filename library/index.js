@@ -59,16 +59,16 @@ exports.getBooksByMonth = function (month){
 exports.getBookById = function (id){
 	// Iterate json and return the book with
 	// the same id
-	for (var i in books){
-		if (books[i].id == id)
-			return books[i];
+	for (var book in books){
+		if (book.id == id)
+			return book;
 	}
 };
 exports.getBookByName = function (name){
 	// Iterate json and return the book with
 	// the same id
-	for (var i in books){
-		if (books[i].name == name)
-			return books[i];
+	for (var book in books){
+		if (book.name == name)
+			return book;
 	}
 };
