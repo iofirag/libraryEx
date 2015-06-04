@@ -3,14 +3,16 @@ var library = require('./library');
 var url = require('url');
 var express = require('express');
 var app = express();
-
+app.use(function(req,res,next){
+	//headers
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	next();
+});
 app.set('port', (process.env.PORT || 5000));
 
 // Routers
 app.get('/getAllBestSellersBooks', function(req,res){
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
 	var books = library.getAllBestSellersBooks();
 	if (books!= null){
 		res.json(books);
@@ -19,9 +21,6 @@ app.get('/getAllBestSellersBooks', function(req,res){
 	}
 });
 app.get('/getBooksByMonth', function(req,res){
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
 	// Get month param
 	var urlPart= url.parse(req.url, true);
 	var query = urlPart.query;
@@ -42,9 +41,6 @@ app.param('id', function(req,res,next,value){
 	next();
 });
 app.get('/getBookById/:id', function(req,res){
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
 	//get id parameter
 	var id = req.params.id;
 
@@ -56,9 +52,6 @@ app.get('/getBookById/:id', function(req,res){
 	}
 });
 app.get('/getBookByName', function(req,res){
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
 	//get name parameter
 	var urlPart= url.parse(req.url, true);
 	var query = urlPart.query;
@@ -75,16 +68,10 @@ app.get('/getBookByName', function(req,res){
 	}
 });
 app.get('/', function(req,res){
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
 	//return api
 	res.send('server root');
 });
 app.all('*', function(req,res){
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	
 	res.send('Wellcom to my project.');
 });
 
@@ -92,6 +79,3 @@ app.all('*', function(req,res){
 app.listen(app.get('port'), function() {
   console.log("Node app is running on port:" + app.get('port'))
 });
-
-//app.listen(precess.env.PORT || 3000);
-//console.log('server running...');
